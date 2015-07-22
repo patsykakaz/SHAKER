@@ -1,0 +1,97 @@
+
+{% load i18n future mezzanine_tags blog_tags keyword_tags disqus_tags pages_tags staticfiles %}
+
+<!doctype html>
+<html lang="fr">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="">
+<meta name="description" content="Accueil">
+
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/bootstrap.override.css' %}">
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+<link rel="stylesheet" href="{% static 'css/temp.css' %}">
+<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+{% if pub %}<link rel="stylesheet" href="{% static 'css/pub.css' %}">{% endif %}
+{% block extra_css %}{% endblock %}
+</head>
+
+<body>
+
+{% if habillage != 'empty' %}
+    {% if habillage.lien %}
+        <a href="{{ habillage.lien }}" target="blank"><div id='pubLayer' style="background-image: url('{{ MEDIA_URL }}publicite/{{ habillage.media }}');"></div></a>
+    {% else %}
+        <div id='pubLayer' style="background-image: url('{{ MEDIA_URL }}publicite/{{ habillage.media }}');"></div>
+    {% endif %}
+{% endif %}
+
+<div id='content_container' class='container {% if habillage %}habillageOn{% endif %}'>
+    <div class="text-center">
+        <div class='sideBar-layer'>
+            <div class='sideBar-top'></div>
+            <div class='sideBar-bottom'></div>
+        </div>
+        <img id='logo' src='{% static 'img/logo.png' %}' alt='logo'/>
+        <div class='sideBar-layer'>
+            <div class='sideBar-top'></div>
+            <div class='sideBar-bottom'></div>
+        </div>
+    </div>
+
+    <div id='layer-navbar' class='{% if not habillage %}container{% endif %}'>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        <!-- <a class="navbar-brand" href="#" style='padding: 0'><img src='img/logo.jpg' style='max-height: 60px'/></a> -->
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+<div class="navbar-collapse collapse">
+    {# {% search_form "all" %} #}
+    {% page_menu "pages/menus/dropdown.html" %}
+</div>
+        </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    </div>
+
+    <div id='main' class='{% if sidePub %}col-md-9 pubOn{% else %}col-md-12 pubOff{% endif %}'>
+    <div id='mask_main'></div>
+    {% block main %}
+    {% endblock %}
+    </div>
+    {% if sidePub %}
+    <div id='sidePub' class='col-md-3'>
+        {% if square %}
+        <a href='{{ square.lien }}' target='blank' />
+            <img src='{{ MEDIA_URL }}publicite/{{ square.media }}' alt='square' />
+        </a>
+        {% endif %}
+        {% if colonne %}
+        <a href='{{ colonne.lien }}' target='blank' />
+            <img src='{{ MEDIA_URL }}publicite/{{ colonne.media }}' alt='colonne' />
+        </a>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+
+<footer id='footer'><footer>
+
+</body>
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+</html>
+

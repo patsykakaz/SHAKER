@@ -48,7 +48,9 @@ def processor_AllBarDuMonde(request,page):
         illustration = bar.illustration.url.split('/')
         bar.illustration = illustration[-1]
         # TODO: override save() for img.url
-        barPics = IBDM.objects.filter(bar=bar)
+        barPics_barman = IBDM_BarmanVedette.objects.filter(bar=bar)
+	barPics_cocktail = IBDM_Cocktail.objects.filter(bar=bar)
+	barPics.deco = IBDM_Decoration.objects.filter(bar=bar)
     except:
         print("QueryError")
         pass

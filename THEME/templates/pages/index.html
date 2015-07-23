@@ -10,7 +10,7 @@
     {% for blog_post in blog_post_list %}
     {% if  forloop.counter == 1 %}
         <a href="{{ blog_post.get_absolute_url }}">
-            <div class='col-md-8 item double-item'>
+            <div class='col-md-8 itemZ double-item'>
                 <div class='item-primary-layer'>
                     <div class='layer-img'>
                         <img src='{{ MEDIA_URL }}{%  thumbnail blog_post.featured_image 550 550 %}' />
@@ -31,7 +31,7 @@
             </div>
         </a>
         <a href='{{ last_bar_du_monde.get_absolute_url }}'>
-            <div class='col-md-4 item triple-item pull-right'>
+            <div class='col-md-4 itemZ triple-item pull-right'>
                 <div class='item-primary-layer'>
                     <div class='layer-img'>
                         <img src='{{ MEDIA_URL }}{%  thumbnail last_bar_du_monde.illustration.url 250 300 %}' />
@@ -54,7 +54,7 @@
         </div>
     {% else %}
         <a href="{{ blog_post.get_absolute_url }}">
-            <div class='item 
+            <div class='itemZ 
                 {% if forloop.counter == 3 %}
                     col-md-4 double-item item-dark
                 {% elif forloop.counter < 5 %}

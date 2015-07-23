@@ -9,10 +9,10 @@
     {% for blog_post in blog_posts.object_list %}
         {% if forloop.counter0 == 0 %}
         <a href="{{ blog_post.get_absolute_url }}">
-            <div class='col-md-8 item double-item'>
+            <div class='col-md-8 itemZ double-item'>
         {% else %}
         <a href="{{ blog_post.get_absolute_url }}">
-            <div class='col-md-4 item
+            <div class='col-md-4 itemZ
             {% if forloop.counter0 == 1 %} 
                 double-item item-dark
             {% elif forloop.counter0|divisibleby:5 %}

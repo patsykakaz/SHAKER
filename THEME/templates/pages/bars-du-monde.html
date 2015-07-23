@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load i18n future mezzanine_tags blog_tags keyword_tags disqus_tags pages_tags staticfiles %}
+
+
+{% block extra_css %}
+    <style type="text/css">
+        h2{
+            padding: 10px;
+        }
+        #info_bar{
+            margin-top: 0px;
+        }
+        #info_bar .fa{
+            color: rgb(180,180,200);
+        }
+        #textFields{
+            margin-top: 50px;
+        }#textFields h4{
+            margin: 50px 0 30px 0;
+        }
+
+        #social{
+            position: absolute;
+            top: -80px;
+            right: 5px;
+            padding: 10px;
+            border-radius: 0 0 0 10px;
+            opacity: .8;
+            background-color: white;
+            -moz-transition: all 0.5s ease-out;
+            -webkit-transition: all 0.5s ease-out;
+            -o-transition: all 0.5s ease-out;
+            transition: all 0.5s ease-out;
+        }#social a{
+            color: rgb(244,176,39);
+        }
+        .img_responsive_layer:hover #social{
+            top: 5px;
+        }
+
+    </style>
+{% endblock %}
+
+{% block main %}
+    <div class='col-md-12'>
+	<h1 class="ribbon">
+	   <strong class='ribbon-content'>{{ page.title }}</strong>
+	</h1>
+        {% for ville in villes %}
+	<h3>{{ ville.title }}</h3>
+        <div class='img_responsive_layer'>
+            <img class='img_responsive img-thumbnail' src='{{ MEDIA_URL }}villes_BDM/{{ ville.iZ }}' alt='illustration ville : {{ bar }}' />
+        </div>
+        {% endfor %}
+
+    </div>
+{% endblock %}
+

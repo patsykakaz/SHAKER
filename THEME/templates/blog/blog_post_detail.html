@@ -23,7 +23,12 @@
 
 {% block main %}
 <div id='blog_detail'>
-    <h2 class='text-center'> {{ blog_post.title|upper }}</h2>
+    <h1 class="ribbon">
+        <strong class='ribbon-content'>{{ blog_post.title|upper }}</strong>
+    </h1>
+    {% if blog_post.baseline %}
+	<div class='text-muted text-center'>{{ blog_post.baseline|capfirst }}</div>
+    {% endif %}
     {% block blog_post_detail_featured_image %}
     {% if settings.BLOG_USE_FEATURED_IMAGE and blog_post.featured_image %}
     <p>

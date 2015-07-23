@@ -20,6 +20,14 @@ def processor_home(request,page):
         print('no BlogPost or BarDuMondex')
     return locals()
 
+@processor_for('bars-du-monde')
+def processor_index_BDM(request,page):
+    try:
+	villes = Ville_BarDuMonde.objects.all()	
+    except:
+	ville = False
+    return locals()
+
 @processor_for(Ville_BarDuMonde)
 def processor_Ville_BarDuMonde(request,page):
     try: 

@@ -3,7 +3,9 @@
 {% load i18n future mezzanine_tags blog_tags keyword_tags disqus_tags pages_tags staticfiles %}
 
 {% block blog_main %}
-    <h2 class='text-center'>NEWS</h2>
+    <h1 class="ribbon">
+	<strong class='ribbon-content'>{{ page.title }}</strong>
+    </h1>
     {% for blog_post in blog_posts.object_list %}
         {% if forloop.counter0 == 0 %}
         <a href="{{ blog_post.get_absolute_url }}">

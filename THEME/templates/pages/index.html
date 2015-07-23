@@ -16,7 +16,7 @@
                         <img src='{{ MEDIA_URL }}{%  thumbnail blog_post.featured_image 550 550 %}' />
                     </div>
                     <div class='item-caption'>
-                        <h3>{{ blog_post.title|truncatechars:50 }}</h3>
+                        <h4>{{ blog_post.title|truncatechars:50 }}</h4>
                         {% if blog_post.baseline %}
                             <p>{{ blog_post.baseline|richtext_filters|safe|truncatechars:70 }}</p>
                         {% endif %}

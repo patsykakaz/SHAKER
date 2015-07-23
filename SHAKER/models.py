@@ -22,9 +22,18 @@ class Ville_BarDuMonde(Page):
         Le champ Page.titre suffit
     """
     illustration = models.ImageField(upload_to=MEDIA_ROOT, verbose_name="Illustration de la ville; Taille recommandée: 1000x400; Poids maximal recommandé: 150 Ko")
+    illustration = ResizedImageField(size=[400,400], upload_to=MEDIA_ROOT+'/villes_BDM')
+    iZ = models.CharField(max_length=200,default=False,null=True,blank=True, editable=False)
     # that's all folks ? 
     class Meta:
         verbose_name = ("Ville (Bars du Monde)")
+
+    def save(self, *args, **kwargs):
+        """
+            try to override save() for illustration.url purposes
+        """
+        self.iZ = self.illustration.name.replace(' ','_')
+        super(Ville_BarDuMonde, self).save(*args, **kwargs)
 
 class BarDuMonde(Page):
 
@@ -44,9 +53,8 @@ class BarDuMonde(Page):
 
 class IBDM(models.Model):
     bar = models.ForeignKey(BarDuMonde)
-    # illustration = models.ImageField(upload_to=MEDIA_ROOT+'/bar_du_monde')
-    illustration = ResizedImageField(size=[500,500], upload_to=MEDIA_ROOT+'/bar_du_monde')
-    iZ = models.CharField(max_length=500,default=False,null=True,blank=True, editable=False)
+    illustration = ResizedImageField(size=[400,400], upload_to=MEDIA_ROOT+'/bar_du_monde')
+    iZ = models.CharField(max_length=200,default=False,null=True,blank=True, editable=False)
     legende = models.CharField(max_length=400,verbose_name='légende',help_text='400 caractères max',null=True,blank=True)
 
     def save(self, *args, **kwargs):
